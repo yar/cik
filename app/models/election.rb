@@ -122,3 +122,9 @@ class Election < ActiveRecord::Base
     result.save!
   end
 end
+
+# select tik_id, r23_data5/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_p, r19_data1+r20_data2+r21_data3+r22_data4+r23_data5 as total from results order by for_p desc
+
+# select tiks.name as tik_name, uiks.num as uik_num, r19_data1, r20_data2, r21_data3, r22_data4, r23_data5, r19_data1/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_1, r20_data2/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_2, r21_data3/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_3, r22_data4/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_4, r23_data5/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_5, r10_ballots_valid/r1_voters_in_list AS share_voted, percentage_10, percentage_12, percentage_15, percentage_18, r1_voters_in_list, r2_ballots_received, r3_ballots_pre, r4_ballots_handed_at_station, r5_ballots_handed_outside_station, r6_ballots_canceled, r7_ballots_in_mobile_boxes, r8_ballots_in_stationary_boxes, r9_ballots_invalid, r10_ballots_valid, r11_unattach_cert_received, r12_unattach_cert_handed, r13_voted_with_unattach_cert, r14_unattach_cert_unused, r15_unattach_cert_handed_by_tik, r16_unattach_cert_lost, r17_ballots_lost, r18_ballots_not_known_initially from results, tiks, uiks where results.uik_id=uiks.id and uiks.tik_id=tiks.id order by for_5 desc  
+
+# select uiks.num, tiks.name, r19_data1+r20_data2+r21_data3+r22_data4+r23_data5 as total, r10_ballots_valid/r1_voters_in_list AS share_voted, r23_data5/(r19_data1+r20_data2+r21_data3+r22_data4+r23_data5) as for_p from results, uiks, tiks where uiks.id=uik_id and tiks.id=results.tik_id order by uiks.num
